@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  nginx:
+    image: nginx:stable
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./www:/var/www
+      - ./nginx/conf.d:/etc/nginx/conf.d
