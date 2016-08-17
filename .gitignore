@@ -1,5 +1,11 @@
-nginx
-www
+nginx/*
+!nginx/.gitkeep
+
+www/*
+www/.gitkeep
+
+certbot/*
+!certbot/.gitkeep
 
 # swap
 [._]*.s[a-w][a-z]

@@ -9,3 +9,16 @@ services:
     volumes:
       - ./www:/var/www
       - ./nginx/conf.d:/etc/nginx/conf.d
+    restart: always
+
+  certbot:
+    build:
+      context: ./dockerfiles/certbot
+    depends_on:
+      - nginx
+    volumes:
+      - ./certbot/etc/letsencrypt:/etc/letsencrypt
+      - ./certbot/var/lib/letsencrypt:/var/lib/letsencrypt
+      - ./www:/var/www
+    tty: true
+    restart: always
