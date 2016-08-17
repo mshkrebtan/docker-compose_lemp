@@ -13,7 +13,7 @@ services:
 
   certbot:
     build:
-      context: ./dockerfiles/docker
+      context: ./dockerfiles/certbot
     depends_on:
       - nginx
     volumes:
