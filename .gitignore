@@ -5,7 +5,6 @@ www/*
 www/.gitkeep
 
 certbot/*
-!certbot/docker
 !certbot/.gitkeep
 
 # swap
