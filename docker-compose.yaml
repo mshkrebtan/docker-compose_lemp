@@ -2,7 +2,8 @@ version: '2'
 
 services:
   nginx:
-    image: nginx:stable
+    build:
+      context: ./dockerfiles/nginx
     ports:
       - 80:80
       - 443:443
@@ -14,16 +15,16 @@ services:
     restart: always
     tty: true
     stdin_open: true
-  
-  certbot:
-    build:
-      context: ./dockerfiles/certbot
-    depends_on:
-      - nginx
-    volumes:
-      - ./certbot/etc/letsencrypt:/etc/letsencrypt
-      - ./certbot/var/lib/letsencrypt:/var/lib/letsencrypt
-      - ./www:/var/www
-    tty: true
-    stdin_open: true
-    restart: always
+
+#  certbot:
+    #build:
+    #  context: ./dockerfiles/certbot
+    #depends_on:
+    #  - nginx
+    #volumes:
+    #  - ./certbot/etc/letsencrypt:/etc/letsencrypt
+    #  - ./certbot/var/lib/letsencrypt:/var/lib/letsencrypt
+    #  - ./www:/var/www
+    #tty: true
+    #stdin_open: true
+    #restart: always
