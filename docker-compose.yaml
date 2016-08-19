@@ -9,8 +9,12 @@ services:
     volumes:
       - ./www:/var/www
       - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./certbot/etc/letsencrypt:/etc/letsencrypt
+      - ./nginx/pki:/etc/nginx/pki
     restart: always
-
+    tty: true
+    stdin_open: true
+  
   certbot:
     build:
       context: ./dockerfiles/certbot
@@ -21,4 +25,5 @@ services:
       - ./certbot/var/lib/letsencrypt:/var/lib/letsencrypt
       - ./www:/var/www
     tty: true
+    stdin_open: true
     restart: always
