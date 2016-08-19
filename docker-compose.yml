@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  nginx:
+    build:
+      context: ./dockerfiles/nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./Volumes/var/www:/var/www
+      - ./Volumes/etc/nginx/conf.d:/etc/nginx/conf.d
+      - ./Volumes/etc/letsencrypt:/etc/letsencrypt
+      - ./Volumes/etc/nginx/ssl:/etc/nginx/ssl
+    tty: true
+    stdin_open: true
+    restart: always

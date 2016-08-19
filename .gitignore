@@ -1,12 +1,3 @@
-nginx/*
-!nginx/.gitkeep
-
-www/*
-www/.gitkeep
-
-certbot/*
-!certbot/.gitkeep
-
 # swap
 [._]*.s[a-w][a-z]
 [._]s[a-w][a-z]
