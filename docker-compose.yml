@@ -2,16 +2,22 @@ version: '2'
 
 services:
   nginx:
-    build:
-      context: ./dockerfiles/nginx
+    image: nginx:stable
     ports:
       - 80:80
       - 443:443
+      - 127.0.0.1:8000:8000
     volumes:
-      - ./Volumes/var/www:/var/www
-      - ./Volumes/etc/nginx/conf.d:/etc/nginx/conf.d
-      - ./Volumes/etc/letsencrypt:/etc/letsencrypt
-      - ./Volumes/etc/nginx/ssl:/etc/nginx/ssl
-    tty: true
-    stdin_open: true
-    restart: always
+      - /var/www/html:/var/www/html
+      - /etc/nginx/conf.d:/etc/nginx/conf.d
+      - /etc/nginx/ssl:/ect/nginx/ssl
+      - /etc/letsencrypt:/etc/letsencrypt
+
+  mariadb:
+    image: mariadb
+    expose:
+      - 3306
+    volumes:
+      - /var/lib/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD

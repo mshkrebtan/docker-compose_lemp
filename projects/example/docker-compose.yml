@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+  php-fpm:
+    image: php:7.0-fpm
+    volumes:
+      - /var/www/html/example.com:/var/www/html/example.com
+    expose:
+      - 9000
+    networks:
+      - isolated
+
+networks:
+  isolated:
+    ipam:
+      config:
+        - subnet: 172.18.31.64/29
+
