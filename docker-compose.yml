@@ -7,10 +7,11 @@ services:
       - 80:80
       - 443:443
       - 127.0.0.1:8000:8000
+      - 127.0.0.1:4443:4443
     volumes:
       - /var/www/html:/var/www/html
       - /etc/nginx/conf.d:/etc/nginx/conf.d
-      - /etc/nginx/ssl:/ect/nginx/ssl
+      - /etc/nginx/ssl:/etc/nginx/ssl
       - /etc/letsencrypt:/etc/letsencrypt
 
   mariadb:
