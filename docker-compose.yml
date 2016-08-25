@@ -9,16 +9,18 @@ services:
       - 127.0.0.1:8000:8000
       - 127.0.0.1:4443:4443
     volumes:
-      - /var/www/html:/var/www/html
-      - /var/www/letsencrypt:/var/www/letsencrypt
-      - /etc/nginx/conf.d:/etc/nginx/conf.d
-      - /etc/nginx/snippets:/etc/nginx/snippets
-      - /etc/nginx/ssl:/etc/nginx/ssl
-      - /etc/letsencrypt:/etc/letsencrypt
+      - /var/www/html:/var/www/html:ro
+      - /var/www/letsencrypt:/var/www/letsencrypt:ro
+      - /etc/nginx/conf.d:/etc/nginx/conf.d:ro
+      - /etc/nginx/snippets:/etc/nginx/snippets:ro
+      - /etc/nginx/ssl:/etc/nginx/ssl:ro
+      - /etc/nginx/http_auth:/etc/nginx/http_auth:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
     restart: always
 
   mariadb:
-    image: mariadb
+    build:
+      context: ./mariadb
     expose:
       - 3306
     volumes:
