@@ -9,12 +9,16 @@ services:
       - 127.0.0.1:8000:8000
       - 127.0.0.1:4443:4443
     volumes:
+      # Sites directory
       - /var/www/html:/var/www/html:ro
+      # Common directory for the ACME challenge (certboot webroot)
       - /var/www/letsencrypt:/var/www/letsencrypt:ro
+      # Nginx configs, snippets, dhparams and HTTP Auth passwords
       - /etc/nginx/conf.d:/etc/nginx/conf.d:ro
       - /etc/nginx/snippets:/etc/nginx/snippets:ro
       - /etc/nginx/ssl:/etc/nginx/ssl:ro
       - /etc/nginx/http_auth:/etc/nginx/http_auth:ro
+      # Let's Encrypt certificates and etc.
       - /etc/letsencrypt:/etc/letsencrypt:ro
     restart: always
 
