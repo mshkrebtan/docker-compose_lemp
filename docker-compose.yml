@@ -20,6 +20,9 @@ services:
       - /etc/nginx/http_auth:/etc/nginx/http_auth:ro
       # Let's Encrypt certificates and etc.
       - /etc/letsencrypt:/etc/letsencrypt:ro
+    hostname: nginx
+    networks:
+      - nginx
     restart: always
 
   mariadb:
@@ -31,3 +34,17 @@ services:
       - /var/lib/mysql:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD
+    hostname: mariadb
+    networks:
+      - mariadb
+    restart: always
+
+networks:
+  nginx:
+    ipam:
+      config:
+        - subnet: 192.168.0.0/29
+  mariadb:
+    ipam:
+      config:
+        - subnet: 192.168.1.0/29

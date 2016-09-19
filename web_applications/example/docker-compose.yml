@@ -3,16 +3,23 @@ version: '2'
 services:
   php-fpm:
     image: php:7.0-fpm
+    hostname: example 
+    domainname: com
     volumes:
       - /var/www/html/example.com:/var/www/html/example.com
     expose:
       - 9000
     networks:
-      - isolated
+      - nginx
+      - mariadb
+    restart: always
 
 networks:
-  isolated:
+  nginx:
     ipam:
       config:
-        - subnet: 172.18.31.64/29
-
+        - subnet: 192.168.0.8/29
+  mariadb:
+    ipam:
+      config:
+        - subnet: 192.168.1.8/29
