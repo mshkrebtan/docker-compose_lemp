@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  nginx:
+    image: nginx:stable
+    container_name: nginx
+    hostname: nginx
+    volumes:
+      - /var/www/:/var/www:ro
+      - /etc/nginx/conf.d:/etc/nginx/conf.d:ro
+      - /etc/nginx/snippets:/etc/nginx/snippets:ro
+      - /etc/letsencrypt/live:/etc/letsencrypt/live:ro
+      - /etc/letsencrypt/archive:/etc/letsencrypt/archive:ro
+    ports:
+      - "80:80"
+      - "443:443"
+      - "127.0.0.1:8080:8080"
+      - "127.0.0.1:8443:8443"
+    network_mode: "bridge"

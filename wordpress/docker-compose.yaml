@@ -1,0 +1,35 @@
+version: '2'
+
+services:
+  wordpress:
+    build: ./php-fpm
+    container_name: wordpress
+    hostname: wordpress
+    volumes:
+      - /var/www/wordpress/:/var/www/wordpress/
+    networks:
+      - frontend
+      - backend
+    # external_links:
+    #   - nginx
+    #   - mariadb
+
+networks:
+  frontend:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.name: "br-wp-frontend"
+    internal: true
+    ipam:
+      config:
+        - subnet: 192.168.0.0/29
+
+  backend:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.name: "br-wp-backend"
+    internal: true
+    ipam:
+      config:
+        - subnet: 192.168.1.0/29
+

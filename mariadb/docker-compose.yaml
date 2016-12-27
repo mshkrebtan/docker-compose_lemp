@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD:
+    hostname: mariadb
+    volumes:
+      - /var/lib/mysql/:/var/lib/mysql
+    network_mode: none
